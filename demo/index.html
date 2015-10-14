@@ -55,11 +55,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body unresolved>
 
   <template is="dom-bind" id="app">
-    <xenon-animation name="{{ name }}" direction="{{ direction }}"></xenon-animation>
+    <xenon-animation animation="{{ animation }}"></xenon-animation>
 
     <div id="controls">
 
-      <select id="option" onchange="animateBox">
+      <select id="option">
         <optgroup label="Attention Seekers">
           <option value="bounce">bounce</option>
           <option value="flash">flash</option>
@@ -172,19 +172,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
 
     app = document.querySelector("#app");
-    app.name= 'rotate-in-animation';
-    app.direction= 'up';
+    app.animation = {
+      name: 'rotate-in-animation',
+      direction: 'up-left'
+    };
 
     // a user must write this function from scratch and can use the others
-    function animateBox() {
+    function moveText() {
       var optionSelected = document.querySelector("#option").value;
-      app.name= 'bounce-in-animation';
-      app.direction= 'up';
+      app.animation = {
+        name: 'bounce-in-animation',
+        direction: 'up'
+      };
+      /*var elem = document.querySelector('#boxContainer');
+      var iterations = 1;
+      window[optionSelected](elem, iterations);*/
     }
 
-    /*window.addEventListener('load', function() {
-      document.querySelector('#option').addEventListener('change', animateBox);
-    });*/
+    window.addEventListener('load', function() {
+      document.getElementById('#option').addEventListener('change', moveText);
+    });
 
     </script>
 
