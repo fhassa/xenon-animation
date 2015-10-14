@@ -75,22 +75,17 @@ Example:
     behaviors: [Polymer.NeonAnimationRunnerBehavior],
 
     properties: {
-      name: {
-        type:   String,
+      animation: {
+        type:   Object,
         notify: true,
-        value:  'shake-animation,'
-      },
-
-      axis: {
-        type:   String,
-        notify: true,
-        value:  'x'
-      },
-
-      direction: {
-        type:   String,
-        notify: true,
-        value:  'left'
+        value: function () {
+          return {
+            name: 'shake-animation',
+            axis: 'x',
+            direction: 'left'
+          }
+        },
+        observer: '_onAnimationChanged'
       },
 
       animationConfig: {
@@ -106,30 +101,10 @@ Example:
             }
           }
         }
-      }
+      },
     },
 
-    observers: [
-      'updateAnimation(name, axis, direction)'
-    ],
-
-    updateAnimation: function(name, axis, direction) {
-      if (name) {
-        this.animationConfig.entry.name = name;
-      }
-
-      if (axis) {
-        this.animationConfig.entry.axis = axis;
-      }
-
-      if (direction) {
-        this.animationConfig.entry.direction = direction;
-      }
-
-      this.playAnimation('entry');
-    }
-
-    /*_onAnimationChanged: function () {
+    _onAnimationChanged: function () {
       if (this.animation.name) {
         this.animationConfig.entry.name = this.animation.name;
       }
@@ -142,8 +117,8 @@ Example:
         this.animationConfig.entry.direction = this.animation.direction;
       }
 
-      this.playAnimation('entry');
-    }*/
+      this.playAnimation();
+    }
 
   });
 
