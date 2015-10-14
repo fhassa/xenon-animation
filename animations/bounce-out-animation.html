@@ -1,0 +1,102 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+
+<!--
+`<bounce-out-animation>` bounces in an element.
+
+Configuration:
+```
+{
+  name: 'bounce-out-animation',
+  node: <node>,
+  direction: 'up' | 'down' | 'left' | 'right' |'',
+  transformOrigin: <transform-origin>,
+  timing: <animation-timing>
+}
+```
+-->
+
+<script>
+
+    Polymer({
+
+        is: 'bounce-out-animation',
+
+        behaviors: [
+            Polymer.NeonAnimationBehavior
+        ],
+
+        configure: function(config) {
+            var node = config.node;
+
+            if (config.transformOrigin) {
+                this.setPrefixedProperty(node, 'transformOrigin', config.transformOrigin);
+            }
+            var keyframes = [];
+
+            switch (config.direction) {
+              case 'up':
+                keyframes = [
+                  {transform: 'none', opacity: '1', offset: 0},
+                  {transform: 'translate3d(0, 50px, 0)', opacity: '1', offset: 0.2},
+                  {transform: 'translate3d(0, 20px, 0)', opacity: '1', offset: 0.4},
+                  {transform: 'translate3d(0, 20px, 0)', opacity: '1', offset: 0.45},
+                  {transform: 'translate3d(0, -2000px, 0)', opacity: '0', offset: 1}];
+                break;
+
+              case 'down':
+                keyframes = [
+                  {transform: 'none', opacity: '1', offset: 0},
+                  {transform: 'translate3d(0, 50px, 0)', opacity: '1', offset: 0.2},
+                  {transform: 'translate3d(0, -20px, 0)', opacity: '1', offset: 0.4},
+                  {transform: 'translate3d(0, -20px, 0)', opacity: '1', offset: 0.45},
+                  {transform: 'translate3d(0, 2000px, 0)', opacity: '0', offset: 1}];
+                break;
+
+              case 'left':
+                keyframes = [
+                  {transform: 'none', opacity: '1', offset: 0},
+                  {transform: 'translate3d(100px, 0, 0)', opacity: '1', offset: 0.2},
+                  {transform: 'translate3d(-20px, 0, 0)', opacity: '1', offset: 0.4},
+                  {transform: 'translate3d(-20px, 0, 0)', opacity: '1', offset: 0.45},
+                  {transform: 'translate3d(-2000px, 0, 0)', opacity: '0', offset: 1}];
+                break;
+
+              case 'right':
+                keyframes = [
+                  {transform: 'none', opacity: '1', offset: 0},
+                  {transform: 'translate3d(100px, 0, 0)', opacity: '1', offset: 0.2},
+                  {transform: 'translate3d(-20px, 0, 0)', opacity: '1', offset: 0.4},
+                  {transform: 'translate3d(-20px, 0, 0)', opacity: '1', offset: 0.45},
+                  {transform: 'translate3d(2000px, 0, 0)', opacity: '0', offset: 1}];
+                break;
+
+              default :
+                keyframes = [
+                  {transform: 'none', opacity: '1', offset: 0},
+                  {transform: 'scale3d(.9, .9, .9)', opacity: '1', offset: 0.2},
+                  {transform: 'scale3d(1.1, 1.1, 1.1)', opacity: '1', offset: 0.5},
+                  {transform: 'scale3d(1.1, 1.1, 1.1)', opacity: '1', offset: 0.55},
+                  {transform: 'scale3d(.3, .3, .3)', opacity: '0', offset: 1}];
+
+            }
+
+            this._effect = new KeyframeEffect(node, keyframes, this.timingFromConfig(config));
+
+            return this._effect;
+        }
+
+    });
+
+</script>
