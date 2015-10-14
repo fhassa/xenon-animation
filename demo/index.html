@@ -55,7 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body unresolved>
 
   <template is="dom-bind" id="app">
-    <xenon-animation animation="{{ animation }}"></xenon-animation>
+    <xenon-animation name="{{ name }}" direction="{{ direction }}"></xenon-animation>
 
     <div id="controls">
 
@@ -172,21 +172,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
 
     app = document.querySelector("#app");
-    app.animation = {
-      name: 'rotate-in-animation',
-      direction: 'up-left'
-    };
+    app.name= 'rotate-in-animation';
+    app.direction= 'up';
 
     // a user must write this function from scratch and can use the others
     function animateBox() {
       var optionSelected = document.querySelector("#option").value;
-      app.animation = {
-        name: 'bounce-in-animation',
-        direction: 'up'
-      };
-      /*var elem = document.querySelector('#boxContainer');
-      var iterations = 1;
-      window[optionSelected](elem, iterations);*/
+      app.name= 'bounce-in-animation';
+      app.direction= 'up';
     }
 
     /*window.addEventListener('load', function() {
