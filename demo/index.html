@@ -1,0 +1,199 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>xenon-animation Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../xenon-animation.html">
+
+    <style>
+
+      body {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: column;
+        flex-flow: column;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        background: #b4d8d9;
+      }
+
+      #controls {
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      #box {
+        background: #363ca1;
+        border-radius: 4px;
+        box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25);
+        width: 25vw;
+        height: 25vw;
+        min-width: 160px;
+        min-height: 160px;
+        will-change: transform;
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+
+
+
+  <body unresolved>
+
+  <template is="dom-bind" id="app">
+    <xenon-animation animation="{{ animation }}"></xenon-animation>
+
+    <div id="controls">
+
+      <select id="option" onchange="animateBox">
+        <optgroup label="Attention Seekers">
+          <option value="bounce">bounce</option>
+          <option value="flash">flash</option>
+          <option value="pulse">pulse</option>
+          <option value="rubberBand">rubberBand</option>
+          <option value="shake">shake</option>
+          <option value="swing">swing</option>
+          <option value="tada">tada</option>
+          <option value="wobble">wobble</option>
+        </optgroup>
+
+        <optgroup label="Bouncing Entrances">
+          <option value="bounceIn">bounceIn</option>
+          <option value="bounceInDown">bounceInDown</option>
+          <option value="bounceInLeft">bounceInLeft</option>
+          <option value="bounceInRight">bounceInRight</option>
+          <option value="bounceInUp">bounceInUp</option>
+        </optgroup>
+
+        <optgroup label="Bouncing Exits">
+          <option value="bounceOut">bounceOut</option>
+          <option value="bounceOutDown">bounceOutDown</option>
+          <option value="bounceOutLeft">bounceOutLeft</option>
+          <option value="bounceOutRight">bounceOutRight</option>
+          <option value="bounceOutUp">bounceOutUp</option>
+        </optgroup>
+
+        <optgroup label="Fading Entrances">
+          <option value="fadeIn">fadeIn</option>
+          <option value="fadeInDown">fadeInDown</option>
+          <option value="fadeInDownBig">fadeInDownBig</option>
+          <option value="fadeInLeft">fadeInLeft</option>
+          <option value="fadeInLeftBig">fadeInLeftBig</option>
+          <option value="fadeInRight">fadeInRight</option>
+          <option value="fadeInRightBig">fadeInRightBig</option>
+          <option value="fadeInUp">fadeInUp</option>
+          <option value="fadeInUpBig">fadeInUpBig</option>
+        </optgroup>
+
+        <optgroup label="Fading Exits">
+          <option value="fadeOut">fadeOut</option>
+          <option value="fadeOutDown">fadeOutDown</option>
+          <option value="fadeOutDownBig">fadeOutDownBig</option>
+          <option value="fadeOutLeft">fadeOutLeft</option>
+          <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+          <option value="fadeOutRight">fadeOutRight</option>
+          <option value="fadeOutRightBig">fadeOutRightBig</option>
+          <option value="fadeOutUp">fadeOutUp</option>
+          <option value="fadeOutUpBig">fadeOutUpBig</option>
+        </optgroup>
+
+        <optgroup label="Flippers">
+          <option value="flip">flip</option>
+          <option value="flipInX">flipInX</option>
+          <option value="flipInY">flipInY</option>
+          <option value="flipOutX">flipOutX</option>
+          <option value="flipOutY">flipOutY</option>
+        </optgroup>
+
+        <optgroup label="Lightspeed">
+          <option value="lightSpeedInRight">lightSpeedInRight</option>
+          <option value="lightSpeedOutRight">lightSpeedOutRight</option>
+          <option value="lightSpeedInLeft">lightSpeedInLeft</option>
+          <option value="lightSpeedOutLeft">lightSpeedOutLeft</option>
+        </optgroup>
+
+        <optgroup label="Rotating Entrances">
+          <option value="rotateIn">rotateIn</option>
+          <option value="rotateInDownLeft">rotateInDownLeft</option>
+          <option value="rotateInDownRight">rotateInDownRight</option>
+          <option value="rotateInUpLeft">rotateInUpLeft</option>
+          <option value="rotateInUpRight">rotateInUpRight</option>
+        </optgroup>
+
+        <optgroup label="Rotating Exits">
+          <option value="rotateOut">rotateOut</option>
+          <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+          <option value="rotateOutDownRight">rotateOutDownRight</option>
+          <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+          <option value="rotateOutUpRight">rotateOutUpRight</option>
+        </optgroup>
+
+        <optgroup label="Specials">
+          <option value="rollIn">rollIn</option>
+          <option value="rollOut">rollOut</option>
+        </optgroup>
+
+        <optgroup label="Zoom Entrances">
+          <option value="zoomIn">zoomIn</option>
+          <option value="zoomInDown">zoomInDown</option>
+          <option value="zoomInLeft">zoomInLeft</option>
+          <option value="zoomInRight">zoomInRight</option>
+          <option value="zoomInUp">zoomInUp</option>
+        </optgroup>
+
+        <optgroup label="Zoom Exits">
+          <option value="zoomOut">zoomOut</option>
+          <option value="zoomOutDown">zoomOutDown</option>
+          <option value="zoomOutLeft">zoomOutLeft</option>
+          <option value="zoomOutRight">zoomOutRight</option>
+          <option value="zoomOutUp">zoomOutUp</option>
+        </optgroup>
+      </select>
+
+      <p>Based on animations from <a href="http://daneden.github.io/animate.css/">Animate.css</a>
+    </div>
+  </template>
+
+
+  <script>
+
+    app = document.querySelector("#app");
+    app.animation = {
+      name: 'rotate-in-animation',
+      direction: 'up-left'
+    };
+
+    // a user must write this function from scratch and can use the others
+    function animateBox() {
+      var optionSelected = document.querySelector("#option").value;
+      app.animation = {
+        name: 'bounce-in-animation',
+        direction: 'up'
+      };
+      /*var elem = document.querySelector('#boxContainer');
+      var iterations = 1;
+      window[optionSelected](elem, iterations);*/
+    }
+
+    /*window.addEventListener('load', function() {
+      document.querySelector('#option').addEventListener('change', animateBox);
+    });*/
+
+    </script>
+
+  </body>
+</html>
