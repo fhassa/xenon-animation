@@ -1,0 +1,33 @@
+{
+  "name": "xenon-animation",
+  "version": "1.0.0",
+  "authors": [
+    "Farid Hassainia <farid.hassainia@gmail.com>"
+  ],
+  "description": "A collection of animations for polymer neon-elements",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "web-animations"
+  ],
+  "main": "xenon-animation.html",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fhassa/xeon-animation"
+  },
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/fhassa/xenon-animation/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  }
+}
