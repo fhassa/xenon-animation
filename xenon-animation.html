@@ -1,0 +1,150 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html"/>
+<link rel="import" href="xenon-animations.html">
+
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <xenon-animation></xenon-animation>
+
+@group Seed Elements
+@element xenon-animation
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="xenon-animation">
+
+  <template>
+    <style>
+      :host {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: column;
+        flex-flow: column;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        background: #b4d8d9;
+      }
+
+      #controls {
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      #box {
+        background: #363ca1;
+        border-radius: 4px;
+        box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25);
+        width: 25vw;
+        height: 25vw;
+        min-width: 160px;
+        min-height: 160px;
+        will-change: transform;
+        cursor: pointer;
+      }
+    </style>
+
+    <div id="boxContainer">
+      <div id="box"></div>
+    </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'xenon-animation',
+
+    behaviors: [Polymer.NeonAnimationRunnerBehavior],
+
+    properties: {
+      name: {
+        type:   String,
+        notify: true,
+        value:  'shake-animation,'
+      },
+
+      axis: {
+        type:   String,
+        notify: true,
+        value:  'x'
+      },
+
+      direction: {
+        type:   String,
+        notify: true,
+        value:  'left'
+      },
+
+      animationConfig: {
+        value: function () {
+          return {
+            'entry': {
+              name: 'shake-animation',
+              node: this
+            },
+            'exit':  {
+              name: 'bounce-out-animation',
+              node: this
+            }
+          }
+        }
+      }
+    },
+
+    observers: [
+      'updateAnimation(name, axis, direction)'
+    ],
+
+    updateAnimation: function(name, axis, direction) {
+      if (name) {
+        this.animationConfig.entry.name = name;
+      }
+
+      if (axis) {
+        this.animationConfig.entry.axis = axis;
+      }
+
+      if (direction) {
+        this.animationConfig.entry.direction = direction;
+      }
+
+      this.playAnimation('entry');
+    }
+
+    /*_onAnimationChanged: function () {
+      if (this.animation.name) {
+        this.animationConfig.entry.name = this.animation.name;
+      }
+
+      if (this.animation.axis) {
+        this.animationConfig.entry.axis = this.animation.axis;
+      }
+
+      if (this.animation.direction) {
+        this.animationConfig.entry.direction = this.animation.direction;
+      }
+
+      this.playAnimation('entry');
+    }*/
+
+  });
+
+</script>
