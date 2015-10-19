@@ -8,8 +8,12 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../neon-animation/neon-animation.html"/>
 <link rel="import" href="../neon-animation/neon-animation-runner-behavior.html"/>
 <link rel="import" href="xenon-animations.html">
+<link rel="import" href="animations/zoom-in-animation.html">
+<link rel="import" href="animations/bounce-out-animation.html">
+
 
 
 <!--
@@ -92,32 +96,50 @@ Example:
         value: function () {
           return {
             'entry': {
-              name: 'shake-animation',
-              node: this
+              name: 'zoom-in-animation',
+              direction: 'down',
+              node:      this,
+              timing:    {
+                delay:    0,
+                duration: 1000,
+                easing:   'cubic-bezier(0.6, 0, 0.4, 1)'
+              }
             },
             'exit':  {
               name: 'bounce-out-animation',
-              node: this
+              direction: 'up',
+              node:      this
             }
-          }
+          };
         }
-      },
+      }
+
+
+    },
+
+    listeners: {
+      'tap': '_onAnimationChanged'
     },
 
     _onAnimationChanged: function () {
-      if (this.animation.name) {
-        this.animationConfig.entry.name = this.animation.name;
-      }
+      this.async(function () {
+        console.log("this : ", this);
+        console.log("_onAnimationChanged - this.animationConfig object : ", this.animationConfig);
+        if (this.animation.name) {
+          this.animationConfig['entry'].name = this.animation.name;
+        }
 
-      if (this.animation.axis) {
-        this.animationConfig.entry.axis = this.animation.axis;
-      }
+        if (this.animation.axis) {
+          this.animationConfig['entry'].axis = this.animation.axis;
+        }
 
-      if (this.animation.direction) {
-        this.animationConfig.entry.direction = this.animation.direction;
-      }
+        if (this.animation.direction) {
+          this.animationConfig['entry'].direction = this.animation.direction;
+        }
 
-      this.playAnimation();
+        this.playAnimation('entry');
+      });
+
     }
 
   });

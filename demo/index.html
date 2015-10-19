@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="controls">
 
-      <select id="option">
+      <select id="option" onchange="animateBox()">
         <optgroup label="Attention Seekers">
           <option value="bounce">bounce</option>
           <option value="flash">flash</option>
@@ -178,20 +178,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     };
 
     // a user must write this function from scratch and can use the others
-    function moveText() {
+    function animateBox() {
+      console.log('animateBox');
       var optionSelected = document.querySelector("#option").value;
-      app.animation = {
-        name: 'bounce-in-animation',
-        direction: 'up'
-      };
+      switch (optionSelected) {
+        case 'flash':
+          app.animation = {
+            name: 'flash',
+            direction: 'up'
+          };
+          break;
+
+        case 'bounceInDown':
+          app.animation = {
+            name: 'bounce-in',
+            direction: 'down'
+          };
+          break;
+      }
+      console.log('app.animation', app.animation);
+
+
       /*var elem = document.querySelector('#boxContainer');
       var iterations = 1;
       window[optionSelected](elem, iterations);*/
     }
 
-    window.addEventListener('load', function() {
+    /*window.addEventListener('load', function() {
       document.getElementById('#option').addEventListener('change', moveText);
-    });
+    });*/
 
     </script>
 

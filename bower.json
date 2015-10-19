@@ -15,7 +15,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/fhassa/xeon-animation"
+    "url": "git://github.com/fhassa/xenon-animation"
   },
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/fhassa/xenon-animation/",
