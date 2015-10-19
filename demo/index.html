@@ -55,7 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body unresolved>
 
   <template is="dom-bind" id="app">
-    <xenon-animation animation="{{ animation }}"></xenon-animation>
+    <xenon-animation name="{{ name }}" axis="{{ axis }}" direction="{{ direction }}"></xenon-animation>
 
     <div id="controls">
 
@@ -172,31 +172,234 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
 
     app = document.querySelector("#app");
-    app.animation = {
-      name: 'rotate-in-animation',
-      direction: 'up-left'
-    };
+    app.name = 'rotate-in-animation';
+    app.axis = 'x';
+    app.direction = 'up-left';
 
     // a user must write this function from scratch and can use the others
     function animateBox() {
       console.log('animateBox');
       var optionSelected = document.querySelector("#option").value;
       switch (optionSelected) {
-        case 'flash':
-          app.animation = {
-            name: 'flash',
-            direction: 'up'
-          };
+        case 'bounce':
+          app.name = 'bounce-animation';
           break;
 
-        case 'bounceInDown':
-          app.animation = {
-            name: 'bounce-in',
-            direction: 'down'
-          };
+        case 'flash':
+          app.name = 'flash-animation';
           break;
+
+        case 'flip':
+          app.name = 'flip-animation';
+          break;
+
+        case 'pulse':
+          app.name = 'pilse-animation';
+          break;
+
+        case 'rollIn':
+          app.name = 'roll-in-animation';
+          break;
+
+        case 'rollOut':
+          app.name = 'roll-out-animation';
+          break;
+
+        case 'rubberband':
+          app.name = 'rubber-band-animation';
+          break;
+
+        case 'shake':
+          app.name = 'shake-animation';
+          break;
+
+        case 'swing':
+          app.name = 'swing-animation';
+          break;
+
+        case 'tada':
+          app.name = 'tada-animation';
+          break;
+
+        case 'wobble':
+          app.name = 'wobble-animation';
+          break;
+
+        //Bounce-In
+        case 'bounceInDown':
+          app.name = 'bounce-in-animation';
+          app.direction = 'down';
+          break;
+
+        case 'bounceInUp':
+          app.name = 'bounce-in-animation';
+          app.direction = 'up';
+          break;
+
+        case 'bounceInLeft':
+          app.name = 'bounce-in-animation';
+          app.direction = 'left';
+          break;
+
+        case 'bounceInRight':
+          app.name = 'bounce-in-animation';
+          app.direction = 'right';
+          break;
+
+        //Bounce-Out
+        case 'bounceOutDown':
+          app.name = 'bounce-out-animation';
+          app.direction = 'down';
+          break;
+
+        case 'bounceOutUp':
+          app.name = 'bounce-out-animation';
+          app.direction = 'up';
+          break;
+
+        case 'bounceOutLeft':
+          app.name = 'bounce-out-animation';
+          app.direction = 'left';
+          break;
+
+        case 'bounceOutRight':
+          app.name = 'bounce-out-animation';
+          app.direction = 'right';
+          break;
+
+        //Flip In
+        case 'FlipInX':
+          app.name = 'flip-in-animation';
+          app.axis = 'x';
+          break;
+
+        case 'FlipInY':
+          app.name = 'flip-in-animation';
+          app.axis = 'y';
+          break;
+
+        //Flip Out
+        case 'FlipOutX':
+          app.name = 'flip-out-animation';
+          app.axis = 'x';
+          break;
+
+        case 'FlipOutY':
+          app.name = 'flip-out-animation';
+          app.axis = 'y';
+          break;
+
+        //Light-Speed-In
+        case 'LightSpeedInLeft':
+          app.name = 'light-speed-in-animation';
+          app.direction = 'left';
+          break;
+
+        case 'LightSpeedInRight':
+          app.name = 'light-speed-in-animation';
+          app.direction = 'right';
+          break;
+
+        //Light-Speed-Out
+        case 'LightSpeedOutLeft':
+          app.name = 'light-speed-out-animation';
+          app.direction = 'left';
+          break;
+
+        case 'LightSpeedOutRight':
+          app.name = 'light-speed-out-animation';
+          app.direction = 'right';
+          break;
+
+        //Rotate-In
+        case 'RotateInDownLeft':
+          app.name = 'rotate-in-animation';
+          app.direction = 'down-left';
+          break;
+
+        case 'RotateInDownRight':
+          app.name = 'rotate-in-animation';
+          app.direction = 'down-right';
+          break;
+
+        case 'RotateInUpLeft':
+          app.name = 'rotate-in-animation';
+          app.direction = 'up-left';
+          break;
+
+        case 'RotateInUpRight':
+          app.name = 'rotate-in-animation';
+          app.direction = 'up-right';
+          break;
+
+        //Rotate-Out
+        case 'RotateOutDownLeft':
+          app.name = 'rotate-out-animation';
+          app.direction = 'down-left';
+          break;
+
+        case 'RotateOutDownRight':
+          app.name = 'rotate-out-animation';
+          app.direction = 'down-right';
+          break;
+
+        case 'RotateOutUpLeft':
+          app.name = 'rotate-out-animation';
+          app.direction = 'up-left';
+          break;
+
+        case 'RotateOutUpRight':
+          app.name = 'rotate-out-animation';
+          app.direction = 'up-right';
+          break;
+
+
+        //Zoom-In
+        case 'zoomInDown':
+          app.name = 'zoom-in-animation';
+          app.direction = 'down';
+          break;
+
+        case 'zoomInUp':
+          app.name = 'zoom-in-animation';
+          app.direction = 'up';
+          break;
+
+        case 'zoomInLeft':
+          app.name = 'zoom-in-animation';
+          app.direction = 'left';
+          break;
+
+        case 'zoomInRight':
+          app.name = 'zoom-in-animation';
+          app.direction = 'right';
+          break;
+
+        //Zoom-Out
+        case 'zoomOutDown':
+          app.name = 'zoom-out-animation';
+          app.direction = 'down';
+          break;
+
+        case 'zoomOutUp':
+          app.name = 'zoom-out-animation';
+          app.direction = 'up';
+          break;
+
+        case 'zoomOutLeft':
+          app.name = 'zoom-out-animation';
+          app.direction = 'left';
+          break;
+
+        case 'zoomOutRight':
+          app.name = 'zoom-out-animation';
+          app.direction = 'right';
+          break;
+
       }
-      console.log('app.animation', app.animation);
+          console.log('app.name', app.name);
+      console.log('app.axis', app.axis);
+      console.log('app.direction', app.direction);
 
 
       /*var elem = document.querySelector('#boxContainer');
