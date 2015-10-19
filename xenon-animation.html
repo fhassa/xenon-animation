@@ -79,17 +79,22 @@ Example:
     behaviors: [Polymer.NeonAnimationRunnerBehavior],
 
     properties: {
-      animation: {
-        type:   Object,
+      name: {
+        type:   String,
         notify: true,
-        value: function () {
-          return {
-            name: 'shake-animation',
-            axis: 'x',
-            direction: 'left'
-          }
-        },
-        observer: '_onAnimationChanged'
+        value:  ','
+      },
+
+      axis: {
+        type:   String,
+        notify: true,
+        value:  ''
+      },
+
+      direction: {
+        type:   String,
+        notify: true,
+        value:  ''
       },
 
       animationConfig: {
@@ -113,21 +118,38 @@ Example:
           };
         }
       }
-
-
     },
 
     listeners: {
-      'tap': '_onAnimationChanged'
+      'tap': 'updateAnimation'
     },
 
-    _onAnimationChanged: function () {
+    observers: [
+      '_updateAnimation(name, axis, direction)'
+    ],
+
+    _updateAnimation: function(name, axis, direction) {
       this.async(function () {
-        console.log("this : ", this);
-        console.log("_onAnimationChanged - this.animationConfig object : ", this.animationConfig);
-        if (this.animation.name) {
-          this.animationConfig['entry'].name = this.animation.name;
+        if (name) {
+          this.animationConfig['entry'].name = name;
         }
+
+        if (axis) {
+          this.animationConfig['entry'].axis = axis;
+        }
+
+        if (direction) {
+          this.animationConfig['entry'].direction = direction;
+        }
+
+        this.playAnimation('entry');
+      });
+    }
+
+    /*_onAnimationChanged: function () {
+      if (this.animation.name) {
+        this.animationConfig.entry.name = this.animation.name;
+      }
 
         if (this.animation.axis) {
           this.animationConfig['entry'].axis = this.animation.axis;
@@ -140,7 +162,7 @@ Example:
         this.playAnimation('entry');
       });
 
-    }
+    }*/
 
   });
 
