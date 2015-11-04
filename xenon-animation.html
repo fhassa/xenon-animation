@@ -121,7 +121,7 @@ Example:
     },
 
     listeners: {
-      'tap': 'updateAnimation'
+      'tap': '_updateAnimation'
     },
 
     observers: [
@@ -142,8 +142,43 @@ Example:
           this.animationConfig['entry'].direction = direction;
         }
 
-        this.playAnimation('entry');
+        this.playAnimation('entry', null, false);
       });
+    },
+
+    playAnimation: function (type, cookie, cancellable) {
+      // default its value to true so existing stuff won't be affected
+      cancellable = typeof cancellable !== 'undefined' ? cancellable : true;
+
+      var allConfigs = this.getAnimationConfig(type);
+      if (!allConfigs) {
+        return;
+      }
+      var allAnimations = this._configureAnimationEffects(allConfigs);
+      var allEffects = allAnimations.map(function(animation) {
+        return animation.effect;
+      });
+
+      if (allEffects.length > 0) {
+        this._player = this._runAnimationEffects(allEffects);
+        this._player.onfinish = function() {
+          this._completeAnimations(allAnimations);
+
+          if (this._player) {
+            // when manually set to false, this._player.cancel() will be skipped
+            // so we get to maintain the end state for some scenarios
+            if (cancellable) {
+              this._player.cancel();
+            }
+            this._player = null;
+          }
+
+          this.fire('neon-animation-finish', cookie, {bubbles: false});
+        }.bind(this);
+
+      } else {
+        this.fire('neon-animation-finish', cookie, {bubbles: false});
+      }
     }
 
     /*_onAnimationChanged: function () {
