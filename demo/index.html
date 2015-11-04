@@ -69,6 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <option value="swing">swing</option>
           <option value="tada">tada</option>
           <option value="wobble">wobble</option>
+          <option value="slideFade">SlideFade</option>
         </optgroup>
 
         <optgroup label="Bouncing Entrances">
@@ -172,7 +173,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
 
     app = document.querySelector("#app");
-    app.name = 'rotate-in-animation';
+    app.name = 'bounce-animation';
     app.axis = 'x';
     app.direction = 'up-left';
 
@@ -185,6 +186,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           app.name = 'bounce-animation';
           break;
 
+        case 'slideFade':
+          app.name = 'slide-fade-animation';
+          break;
+
         case 'flash':
           app.name = 'flash-animation';
           break;
@@ -194,7 +199,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           break;
 
         case 'pulse':
-          app.name = 'pilse-animation';
+          app.name = 'pulse-animation';
           break;
 
         case 'rollIn':
@@ -205,7 +210,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           app.name = 'roll-out-animation';
           break;
 
-        case 'rubberband':
+        case 'rubberBand':
           app.name = 'rubber-band-animation';
           break;
 
@@ -268,87 +273,87 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           break;
 
         //Flip In
-        case 'FlipInX':
+        case 'flipInX':
           app.name = 'flip-in-animation';
           app.axis = 'x';
           break;
 
-        case 'FlipInY':
+        case 'flipInY':
           app.name = 'flip-in-animation';
           app.axis = 'y';
           break;
 
         //Flip Out
-        case 'FlipOutX':
+        case 'flipOutX':
           app.name = 'flip-out-animation';
           app.axis = 'x';
           break;
 
-        case 'FlipOutY':
+        case 'flipOutY':
           app.name = 'flip-out-animation';
           app.axis = 'y';
           break;
 
         //Light-Speed-In
-        case 'LightSpeedInLeft':
+        case 'lightSpeedInLeft':
           app.name = 'light-speed-in-animation';
           app.direction = 'left';
           break;
 
-        case 'LightSpeedInRight':
+        case 'lightSpeedInRight':
           app.name = 'light-speed-in-animation';
           app.direction = 'right';
           break;
 
         //Light-Speed-Out
-        case 'LightSpeedOutLeft':
+        case 'lightSpeedOutLeft':
           app.name = 'light-speed-out-animation';
           app.direction = 'left';
           break;
 
-        case 'LightSpeedOutRight':
+        case 'lightSpeedOutRight':
           app.name = 'light-speed-out-animation';
           app.direction = 'right';
           break;
 
         //Rotate-In
-        case 'RotateInDownLeft':
+        case 'rotateInDownLeft':
           app.name = 'rotate-in-animation';
           app.direction = 'down-left';
           break;
 
-        case 'RotateInDownRight':
+        case 'rotateInDownRight':
           app.name = 'rotate-in-animation';
           app.direction = 'down-right';
           break;
 
-        case 'RotateInUpLeft':
+        case 'rotateInUpLeft':
           app.name = 'rotate-in-animation';
           app.direction = 'up-left';
           break;
 
-        case 'RotateInUpRight':
+        case 'rotateInUpRight':
           app.name = 'rotate-in-animation';
           app.direction = 'up-right';
           break;
 
         //Rotate-Out
-        case 'RotateOutDownLeft':
+        case 'rotateOutDownLeft':
           app.name = 'rotate-out-animation';
           app.direction = 'down-left';
           break;
 
-        case 'RotateOutDownRight':
+        case 'rotateOutDownRight':
           app.name = 'rotate-out-animation';
           app.direction = 'down-right';
           break;
 
-        case 'RotateOutUpLeft':
+        case 'rotateOutUpLeft':
           app.name = 'rotate-out-animation';
           app.direction = 'up-left';
           break;
 
-        case 'RotateOutUpRight':
+        case 'rotateOutUpRight':
           app.name = 'rotate-out-animation';
           app.direction = 'up-right';
           break;
@@ -397,7 +402,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           break;
 
       }
-          console.log('app.name', app.name);
+
+      console.log('app.name', app.name);
       console.log('app.axis', app.axis);
       console.log('app.direction', app.direction);
 
